@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- QNA -->
+
+    <div class="container mx-auto py-10">
+        <h1 class="text-4xl font-bold mb-6">Answer</h1>
+        <div id="questionContainer" class="font-bold text-3xl"></div><br>
+        <div id="answerContainer" class="text-xl"></div>
+      </div>
+    
+      <script>
+        // Get the question number from the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const questionNumber = urlParams.get('q');
+    
+        // Define the question-answer pairs
+        const qaPairs = [
+          {
+            questionNumber: "1",
+            question: "What is the punishment for not paying loan?",
+            answer: "If you do not repay your loan, the lender can take you to court. The court will then require that you pay back the amount in full or face other penalties such as wage garnishment or seizure of assets. The lender may also report the debt to credit bureaus and send debt collectors after you if payments become overdue"
+          },
+          {
+            questionNumber: "2",
+            question: "Is not paying EMI a crime?",
+            answer: "Loan defaulter will not go to jail: Defaulting on a loan is a civil dispute. Criminal charges cannot be put on a person for loan default. It means, the police just cannot make arrests. Hence, a genuine person, unable to pay back the EMI, must not become hopeless."
+          },
+          {
+            questionNumber: "3",
+            question: "Can I check how many loans in my name?",
+            answer: "There is a very simple way to find out. Download credit report from a Credit Bureau (also known as Credit Information Companies). A credit report has information about all your loans, even the fake ones. If you find a fake loan entry in the report, take remedial action."
+          },
+          {
+            questionNumber: "4",
+            question: "How do I find my loan history?",
+            answer: "You can get it online: AnnualCreditReport.com, or by phone: 1-877-322-8228. You get one free report from each credit reporting company every year."
+          },
+          {
+            questionNumber: "5",
+            question: "Can a person take two loans?",
+            answer: "The simple answer is yes. An individual can take more than one Personal Loan. But just like the first loan, you will have to meet the eligibility requirements of the lender to get approval for the loan. Lenders consider several factors like your current income, existing loans, etc."
+          },
+          {
+            questionNumber: "6",
+            question: "Can banks see my other bank accounts?",
+            answer: "Can bank employees see your accounts? Bank tellers can see your checking and savings accounts as well as money paid toward loans. They can also move money around your different accounts at your request."
+          },
+          {
+            questionNumber: "7",
+            question: "What is the range of CIBIL score?",
+            answer: "Your CIBIL score, calculated based on your credit behavior as reflected in the 'Accounts' and 'Enquiries' section of your CIR, ranges between 300-900. A score above 700 is generally considered good."
+          },
+          {
+            questionNumber: "8",
+            question: "How long do banks keep records?",
+            answer: "Banks are required by federal law to keep records for five years. Check with your bank for specific details about how to access your old statements."
+          },
+          {
+            questionNumber: "9",
+            question: "What questions are asked for loan?",
+            answer: "Below is a guide of the possible questions you need to answer while opting for small loans.What is your business plan? ...How much money do you need? ...What is your business financial and credit score? ...Where is the audited financial statement of your business? ...Where are your financial details and credit score?"
+          },
+          {
+            questionNumber: "10",
+            question: "How do I settle a personal loan?",
+            answer: "Negotiating a Personal Loan Settlement: Here is What You Need to Know your debt.\n Have a repayment plan. Contact your lender. Make a Formal agreement. Clear your settlement payment. Check your credit score."
+          },
+        ];
+    
+        // Find the corresponding question and answer based on the question number
+        const selectedQA = qaPairs.find(qa => qa.questionNumber === questionNumber);
+        const questionContainer = document.getElementById('questionContainer');
+        const answerContainer = document.getElementById('answerContainer');
+    
+        // Display the question
+        if (selectedQA) {
+          const questionElement = document.createElement('h2');
+          questionElement.textContent = selectedQA.question;
+          questionContainer.appendChild(questionElement);
+        } else {
+          const notFoundElement = document.createElement('p');
+          notFoundElement.textContent = "Question not found";
+          questionContainer.appendChild(notFoundElement);
+        }
+    
+        // Display the answer
+        if (selectedQA) {
+          const answerElement = document.createElement('p');
+          answerElement.textContent = selectedQA.answer;
+          answerContainer.appendChild(answerElement);
+        } else {
+          const notFoundElement = document.createElement('p');
+          notFoundElement.textContent = "Answer not found";
+          answerContainer.appendChild(notFoundElement);
+        }
+      </script>
+
+    <br><p class="text-lg ml-8">Having any more Questions? <a href="{{url_for('loan')}}" class="text-blue-700">Click Here</a></p>
+    {% endblock %}

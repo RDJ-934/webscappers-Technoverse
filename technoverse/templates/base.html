@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Scrappers</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/index.css">
+  <style>
+    #sale-img{
+  width: 50%;
+  padding-top: 20px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+#myslider img{
+  width: 800px;
+  height: 400px;
+}
+
+  </style>
+  {% block head %}
+  {% endblock %}
+  
+</head>
+
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 py-4">
+      <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center">
+              <a href="/index.html" class="text-white font-bold text-xl">Web Scrappers</a>
+
+
+              <!-- Authentication -->
+              <div class="flex items-center space-x-4">
+                  <a href="{{ url_for('home') }}" class="text-white">Home</a>
+                  <a href="{{ url_for('about') }}" class="text-white">About</a>
+                  {% if not logged_in: %}
+                  <a href="{{ url_for('login') }}" class="text-white">Login</a>
+                  <a href="{{ url_for('register') }}" class="text-white">Register</a>
+                  {% endif %}
+                  {% if logged_in: %}
+                  <a class="text-white" href="{{ url_for('secrets') }}">{{current_user.name}}</a>
+                  <a class="text-white" href="{{ url_for('logout') }}">Log Out</a>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+  </nav>
+  
+ 
+       {% block content %}
+       {% endblock %}
+             <!-- Footer -->
+<footer class="bg-gray-800 text-white py-4 mt-60">
+  <div class="container mx-auto px-4">
+      <p class="text-center">© 2023 Web Scrappers. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+
+</html>

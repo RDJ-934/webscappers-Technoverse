@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+  <!-- Image Slider -->
+    <section id="sale-img">
+      <div id="myslider" style="width:800px; height:400px">
+          <img src="static/images/image1.jpg" />
+          <img src="static/images/image2.jpg" />
+          <img src="static/images/image3.jpg" />
+      </div>
+  </section>
+<!-- List of Question -->
+  <div class="container mx-auto py-10">
+    <h1 class="text-4xl font-bold mb-6 text-2xl">Types of Questions</h1>
+
+    <ul class="list-disc pl-6 text-xl">
+      <a href="{{url_for('loan')}}"><li>Loan Related Question</li></a>
+      <a href="{{url_for('carloan')}}"><li>Car Loan Related Question</li></a>
+      <a href="{{url_for('fraud')}}"><li>Fraud Related Question</li></a>
+    </ul>
+  </div>
+    <!-- Slider script -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-slider/1.0.0/simpleslider.min.js"></script>
+    <script>
+        simpleslider.getSlider({
+            container: document.getElementById('myslider'),
+            transitionTime: 1,
+            delay: 4
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4 mt-60">
+        <div class="container mx-auto px-4">
+            <p class="text-center">© 2023 Web Scrappers. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+{% endblock %}

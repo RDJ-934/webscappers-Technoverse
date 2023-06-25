@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- QNA -->
+       <div class="container mx-auto py-10">
+        <h1 class="text-4xl font-bold mb-6">Car Loan Questions</h1>
+        <div class="mb-4">
+          <input id="searchInput" class="search-input border border-gray-300 rounded px-4 py-2" type="text" placeholder="Search Questions">
+        </div>
+        <div id="questionsContainer" class="text-lg"></div>
+        <br>
+        <p class="text-lg">Want to ask question Related other Topics? <a href="{{url_for('home')}}" class="text-blue-700">Click Here</a></p>
+      </div>
+
+    <!-- QNA SCRIPT -->
+      <script>
+        // Define the question-answer pairs
+        const qaPairs = [
+          {
+            questionNumber: "1",
+            question: "What is the interest rate charged for the car loan?",
+            answer: "The first and foremost question that you should ask regarding a car loan should be the interest rate that the bank would charge you on your loan. There are many banks that offer car loans at low interest rates. Generally, borrowers having existing relationship with a bank get loans at relatively lower interest rates. Some banks offer loans at rates as less as 9.5% per annum."
+          },
+          {
+            questionNumber: "2",
+            question: "What is the total amount being financed by the bank?",
+            answer: "Even if the interest rate is low, some lenders charge borrowers heavily for processing, documentation, prepayment, foreclosure, late charges, default in payment, etc. This increases the overall amount paid for the car. The borrower should check the final amount that he will have to pay over the period by using the car loan EMI calculator. You should check various aspects such as the principal loan amount and tenure to get the lowest interest and save on your final car amount."
+          },
+          {
+            questionNumber: "3",
+            question: "What is the final price I will have to pay for the vehicle?",
+            answer: "There is a very simple way to find out. Download credit report from a Credit Bureau (also known as Credit Information Companies). A credit report has information about all your loans, even the fake ones. If you find a fake loan entry in the report, take remedial action."
+          },
+          {
+            questionNumber: "4",
+            question: "What should my down payment be and for how long should a car loan be taken?",
+            answer: "Applicants should understand that their car loan would stay with them for some time and they will have to pay a regular amount in EMI every month for years. Smart financial planning is the key here. Applicants should not agree to the higher EMI amount which may put an immense financial pressure on their daily budget in order to keep the tenure on the lower side and save on interests. They should also refrain from choosing the longest tenure as it will increase the interest payable on the loan amount. A balanced EMI with a sensible tenure that does not put excessive pressure on earnings should be chosen."
+          },
+          {
+            questionNumber: "5",
+            question: "Can I make payments early without any penalty?",
+            answer: "This is a very important question that every borrower should ask his lenders whenever he approaches them for a loan. Many banks levy prepayment charges, foreclosure charges and other fee when the borrower wants to pay off his debts before the tenure ends. You should always choose a bank that charges you the minimum in such events. Many banks do not levy foreclosure charges after two years of the sanctioning of the loan. Those banks should be given a preference which levy low or no foreclosure charges."
+          },
+          
+        ];
+    
+        // Function to generate the HTML for a question
+        function generateQuestionHTML(qa) {
+          const questionElement = document.createElement('p');
+          questionElement.innerHTML = `<a href="carLoanAnswer.html?q=${qa.questionNumber}">${qa.question}</a>`;
+          return questionElement;
+        }
+    
+        // Render the questions
+        function renderQuestions(questions) {
+          const questionsContainer = document.getElementById('questionsContainer');
+          questionsContainer.innerHTML = '';
+    
+          if (questions.length === 0) {
+            const noResultsElement = document.createElement('p');
+            noResultsElement.textContent = 'No results found.';
+            questionsContainer.appendChild(noResultsElement);
+          } else {
+            questions.forEach(question => {
+              const questionHTML = generateQuestionHTML(question);
+              questionsContainer.appendChild(questionHTML);
+            });
+          }
+        }
+    
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (event) => {
+          const searchTerm = event.target.value.toLowerCase();
+    
+          const filteredQuestions = qaPairs.filter(qa => qa.question.toLowerCase().includes(searchTerm));
+          renderQuestions(filteredQuestions);
+        });
+    
+        // Initial rendering of all questions
+        renderQuestions(qaPairs);
+      </script>
+
+      
+
+      {% endblock %}

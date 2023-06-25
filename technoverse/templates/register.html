@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+   <!-- Register Now  -->
+   <div class="Register">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+          <div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              Create an account
+            </h2>
+          </div>
+          <form action="{{ url_for('register') }}" class="mt-8 space-y-6" method="POST">
+            <input type="hidden" name="remember" value="true">
+            <div class="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label for="username" class="sr-only">Name</label>
+                <input id="username" name="name" type="text" placeholder="Name" required="required" autocomplete="username" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username">
+              </div>
+              <div>
+                <label for="email-address" class="sr-only">Email address</label>
+                <input id="email-address" name="email" type="email" placeholder="Email" required="required" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+              </div>
+              <div>
+                <label for="password" class="sr-only">Password</label>
+                <input id="password" type="password" name="password" placeholder="Password" required="required" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+              </div>
+            </div>
+    
+            <div>
+              <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 0a10 10 0 100 20 10 10 0 000-20zM9 17.59V13a1 1 0 012 0v4.59l2.3-2.3a1 1 0 111.4 1.42l-4 4a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.42L9 17.59z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                Sign up
+              </button>
+            </div>
+          </form>
+    
+          <div class="text-sm text-center">
+            <p class="text-gray-600">Already have an account?</p>
+            <a href="{{ url_for('login')}}" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
+          </div>
+        </div>
+      </div>
+    
+   </div>
+   {% endblock %}

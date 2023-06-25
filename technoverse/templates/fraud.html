@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- QNA -->
+       <div class="container mx-auto py-10">
+        <h1 class="text-4xl font-bold mb-6 text-gray-800">Fraud Questions</h1>
+        <div class="mb-4">
+          <input id="searchInput" class="search-input border border-gray-300 rounded px-4 py-2" type="text" placeholder="Search Questions">
+        </div>
+        <div id="questionsContainer" class="text-lg"></div>
+        <br>
+        <p class="text-lg">Want to ask question Related other Topics? <a href="{{url_for('home')}}" class="text-blue-700">Click Here</a></p>
+      </div>
+
+    <!-- QNA SCRIPT -->
+      <script>
+        // Define the question-answer pairs
+        const qaPairs = [
+          {
+            questionNumber: "1",
+            question: "Who are the biggest loan defaulters in India?",
+            answer: "Top-10 Wilful Defaulters In India As On March 31, 2022: 1) Mehul Choksi’s Gitanjali Gems (Rs 7,848 crore) 2) Era Infra (Rs 5,879 crore)  3) Reigo Agro (Rs 4,803 crore)  4) Concast Steel and Power (Rs 4,596 crore)  5) ABG Shipyard (Rs 3,708 crore)  6) Frost International (Rs 3,311 crore)  7) Winsome Diamonds and Jewellery (Rs 2,931 crore)  8) Rotomac Global (Rs 2,893 crore)  9) Coastal Projects (Rs 2,311 crore)  10) Zoom Developers (Rs 2,147 crore)"
+          },
+          {
+            questionNumber: "2",
+            question: "How do banks trace defaulters?",
+            answer: "This is usually done by analysing all possible contact details including addresses and telephone numbers, allowing the lender to locate those who have defaulted. “Now, credit bureaus can identify a chronic defaulter even if he changes his location,” said a senior private-sector banker."
+          },
+          {
+            questionNumber: "3",
+            question: " Will it scale and adapt to a changing fraud environment?",
+            answer: "CNP fraud is a complicated crime that is constantly evolving. The criminals are becoming more sophisticated, and the methods change often. Merchants need to stay on top of the latest threats and ensure that their strategy addresses the most pressing risk -- even if that risk is different from what it was yesterday or last year."
+          },
+          {
+            questionNumber: "4",
+            question: "Does it leverage machine learning to proactively detect fraud patterns?",
+            answer: "In a similar vein, many legacy solutions have left businesses vulnerable to emerging attack patterns. As the pace and volume of fraud threats continue to increase, and as fraudsters find new ways to attack businesses, fraud teams are struggling to effectively deal with threats due to poor data quality, ineffective alerts, and non-existent or outdated intelligence."
+          },
+          {
+            questionNumber: "5",
+            question: "Can it help improve operational efficiency?",
+            answer: "Many merchants still rely on manual or semi-manual systems to facilitate much of their fraud-prevention and detection efforts. This increases the cost of their operations and makes it hard to scale initiatives as the enterprise grows. As fraud continues to rise and evolve, merchants need intuitive tools to improve efficiency and productivity."
+          },
+          
+        ];
+    
+        // Function to generate the HTML for a question
+        function generateQuestionHTML(qa) {
+          const questionElement = document.createElement('p');
+          questionElement.innerHTML = `<a href="fraudAnswer.html?q=${qa.questionNumber}">${qa.question}</a>`;
+          return questionElement;
+        }
+    
+        // Render the questions
+        function renderQuestions(questions) {
+          const questionsContainer = document.getElementById('questionsContainer');
+          questionsContainer.innerHTML = '';
+    
+          if (questions.length === 0) {
+            const noResultsElement = document.createElement('p');
+            noResultsElement.textContent = 'No results found.';
+            questionsContainer.appendChild(noResultsElement);
+          } else {
+            questions.forEach(question => {
+              const questionHTML = generateQuestionHTML(question);
+              questionsContainer.appendChild(questionHTML);
+            });
+          }
+        }
+    
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (event) => {
+          const searchTerm = event.target.value.toLowerCase();
+    
+          const filteredQuestions = qaPairs.filter(qa => qa.question.toLowerCase().includes(searchTerm));
+          renderQuestions(filteredQuestions);
+        });
+    
+        // Initial rendering of all questions
+        renderQuestions(qaPairs);
+      </script>
+
+      
+
+      {% endblock %}
